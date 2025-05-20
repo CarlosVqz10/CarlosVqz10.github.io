@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Unidad 3 | Actividad 03</title>
+        <link rel="icon" type="image/x-icon" href="favicon (1).ico">
+        <!--- Llenar el title y los metadatos-->
+      <meta name="Autor" content="Vazquez Hernadez Carlos Alejandro">
+      <meta name="Fecha" content="30/04/2025">
+      <meta name="Descripcion" content="JavaScript">
+    </head>
+    <body>
+    <!--Llenar el tituo y pegar contenido-->
+        <h1>Unidad 3 | Actividad 03:: Tema(JavaScript)</h1>
+        <script>
+            let opc = window.prompt("Menu de opciones:\n 1.Sumar\n 2.Restar\n 3.Multiplicar\n 4.Dividir\n Que opcion deseas?");
+            let val_1 = Number(window.prompt("Cuál es el primer valor?"));
+            let val_2 = Number(window.prompt("Cuál es el segundo valor?"));
+            switch(opc){
+                case "1":
+                    document.write("<h3>Operación suma</h3>");
+                    document.write("<code>" + val_1 + "+" + val_2 + "=" + (val_1 + val_2) + "</code>");
+                break;
+                case "2": 
+                    document.write("<h3>Operación resta</h3>");
+                    document.write("<code>" + val_1 + "-" + val_2 + "=" + (val_1 - val_2) + "</code>");
+                break;
+                case "3": 
+                    document.write("<h3>Operación multiplicacion</h3>");
+                    document.write("<code>" + val_1 + "*" + val_2 + "=" + (val_1 * val_2) + "</code>");
+                break;
+                case "4": 
+                    document.write("<h3>Operación division</h3>");
+                    document.write("<code>" + val_1 + "/" + val_2 + "=" + (val_1 / val_2) + "</code>");
+                break;
+            }
+        </script>
+    </body>
+</html>
+
