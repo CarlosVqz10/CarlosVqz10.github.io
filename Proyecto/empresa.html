@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="../Imagenes/faviconT.ico">
+  <title>Empresa</title>
+     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary-color: #0f7ddb;
+      --secondary-color: #f9b230;
+      --bg-color: #121212;
+      --text-color: #eee;
+      --highlight-color: #ffca3a;
+      --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+      /* fallback bg-color with transparency for readability */
+      background-color: rgba(18,18,18,0.75);
+      background-blend-mode: darken;
+    }
+    header {
+      max-width: 900px;
+      text-align: center;
+      padding: 2em 1em;
+      border-bottom: 2px solid var(--primary-color);
+      background: rgba(18,18,18,0.75);
+      border-radius: 0 0 15px 15px;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      letter-spacing: 0.1em;
+      color: var(--primary-color);
+      margin-bottom: 0.25em;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: var(--highlight-color);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    main {
+      max-width: 900px;
+      width: 100%;
+      margin-top: 2em;
+    }
+    section {
+      background: rgba(29,29,29,0.85);
+      border-radius: 10px;
+      padding: 1.5em 2em;
+      margin-bottom: 2em;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.7);
+    }
+    section h2 {
+      color: var(--secondary-color);
+      margin-bottom: 0.75em;
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 0.3em;
+    }
+    /* Accordion style */
+    input[type="checkbox"] {
+      display: none;
+    }
+    label.accordion-label {
+      display: block;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      padding-right: 2em;
+      user-select: none;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.6em;
+      transition: color 0.3s ease;
+    }
+    label.accordion-label:hover {
+      color: var(--highlight-color);
+    }
+    label.accordion-label::after {
+      content: "▼";
+      font-size: 0.9rem;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+      color: var(--secondary-color);
+    }
+    input[type="checkbox"]:checked + label.accordion-label::after {
+      transform: translateY(-50%) rotate(-180deg);
+      color: var(--highlight-color);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 0.8em;
+      line-height: 1.5;
+    }
+    input[type="checkbox"]:checked ~ .accordion-content {
+      max-height: 500px;
+      padding-top: 0.3em;
+    }
+    /* Card gallery */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1.5em;
+    }
+    .card {
+      background: #292929;
+      border-radius: 8px;
+      padding: 1em;
+      box-shadow: 0 4px 10px #0008 inset;
+      color: #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .card:hover, .card:focus-within {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--highlight-color);
+      color: var(--highlight-color);
+    }
+    .card img {
+      width: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      margin-bottom: 0.8em;
+      filter: drop-shadow(0 0 3px var(--primary-color));
+      user-select: none;
+    }
+    .card h3 {
+      margin: 0.3em 0 0.6em 0;
+      font-size: 1.3rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin: 0;
+    }
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 1.5em 0.5em 2em 0.5em;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      background: rgba(18,18,18,0.75);
+      border-radius: 15px 15px 0 0;
+    }
+    /* Responsive text scaling */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body background="../Imagenes/fondo20.jpg">
+  <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Proyecto.html">The Legend of Zelda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item"><a class="nav-link" href="resumen.html">Resumen</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Historia</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="cronologia.html">Cronologia</a></li>
+                            <li><a class="dropdown-item" href="empresa.html">Empresa</a></li>
+                            <li><a class="dropdown-item" href="Videojuegos.html">Videojuegos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soundtracks</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="TLOFZ_soundtrack.html">The Legend of Zelda</a></li>
+                            <li><a class="dropdown-item" href="TLOFZOT_soundtrack.html">The Legend of Zelda Ocarina of Time</a></li>
+                            <li><a class="dropdown-item" href="TLOFZMM_soundtrack.html">The Legend of Zelda Majoras Mask</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTP_soundtrack.html">The Legend of Zelda Twillight Princess</a></li>
+                            <li><a class="dropdown-item" href="TLOFZBW_soundtrack.html">The Legend of Zelda Breath of the Wild</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTK_soundtrack.html">The Legend of Zelda Tears of the Kingdom</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personajes</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="personajes.html">Personajes de The Legend of Zelda</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Teorías por Fans</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="teorias.html">Teorías</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contenido.html">Redes sociales</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  </header>
+
+<header>
+    <h1>Nintendo y The Legend of Zelda</h1>
+    <p>Innovación y magia en el desarrollo de un ícono de los videojuegos</p>
+  </header>
+  <main>
+    <section>
+      <input type="checkbox" id="about-nintendo" />
+      <label for="about-nintendo" class="accordion-label">¿Quién es Nintendo?</label>
+      <div class="accordion-content">
+        <p>
+          Nintendo Co., Ltd. es una empresa japonesa pionera y líder mundial en la industria de los videojuegos y entretenimiento digital. Fundada en 1889, evolucionó de fabricante de cartas tradicionales a una compañía icónica en innovación tecnológica y narrativa de juegos, creando universos que han marcado generaciones enteras.
+        </p>
+      </div>
+    </section>
+    <section>
+      <input type="checkbox" id="about-zelda" />
+      <label for="about-zelda" class="accordion-label">El legado de The Legend of Zelda</label>
+      <div class="accordion-content">
+        <p>
+          Desde su primer lanzamiento en 1986, The Legend of Zelda ha sido sinónimo de aventura épica, exploración libre y un diseño de niveles pionero. Nintendo, junto a sus talentosos desarrolladores como Shigeru Miyamoto, ha creado un universo mágico que combina historia, música y jugabilidad clásica que sigue encantando a millones.
+        </p>
+      </div>
+    </section>
+    <section>
+      <input type="checkbox" id="about-values" />
+      <label for="about-values" class="accordion-label">Filosofía y valores de desarrollo</label>
+      <div class="accordion-content">
+        <p>
+          Nintendo se caracteriza por su enfoque en la creatividad, calidad y experiencia del jugador. La empresa apuesta por innovar en mecánicas de juego mientras respetan la accesibilidad y la nostalgia, fomentando el descubrimiento y la inmersión en mundos vibrantes y bien diseñados.
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2>Personajes icónicos</h2>
+      <div class="cards" role="list">
+        <article class="card" tabindex="0" role="listitem" aria-label="Link, el héroe de la saga">
+          <img src="../Imagenes/1.jpeg" alt="Link, el héroe de The Legend of Zelda" />
+          <h3>Link</h3>
+          <p>El valiente héroe que defiende Hyrule y lucha contra la oscuridad con su espada y escudo.</p>
+        </article>
+        <article class="card" tabindex="0" role="listitem" aria-label="Princess Zelda, la sabia princesa">
+          <img src="../Imagenes/2.jpeg" alt="Princesa Zelda" />
+          <h3>Princesa Zelda</h3>
+          <p>La sabia y poderosa princesa que guía y protege el reino con magia y valor.</p>
+        </article>
+        <article class="card" tabindex="0" role="listitem" aria-label="Ganondorf, el antagonista principal">
+          <img src="../Imagenes/3.jpeg" alt="Ganondorf, antagonista" />
+          <h3>Ganondorf</h3>
+          <p>El antagonista oscuro, maestro de la maldad que busca el poder absoluto a costa de Hyrule.</p>
+        </article>
+      </div>
+    </section>
+    <section>
+      <input type="checkbox" id="contact" />
+      <label for="contact" class="accordion-label">Contacto e información adicional</label>
+      <div class="accordion-content">
+        <p>
+          Para más información sobre Nintendo y sus proyectos, visita su sitio oficial: 
+          <a href="https://www.nintendo.com" target="_blank" rel="noopener noreferrer" style="color: var(--highlight-color); text-decoration: underline;">Nintendo.com</a>.
+        </p>
+        <p>
+          Explora más sobre la franquicia The Legend of Zelda y sumérgete en la aventura que ha cautivado a los jugadores por generaciones.
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Nintendo Company. Página informativa creada con HTML y CSS.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
+

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="../Imagenes/faviconT.ico">
+<title>Teorías de Fans de The Legend of Zelda</title>
+<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+  :root {
+    --dark-green: #0b3d0b;
+    --light-green: #4caf50;
+    --gold: #ffd700;
+    --bg-gradient: linear-gradient(135deg, #1a2a06, #4caf50);
+    --card-bg: #e7f5e1;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--bg-gradient);
+    color: var(--dark-green);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
+  header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.2rem;
+  }
+  header p {
+    font-style: italic;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  #theories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+  .theory-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .theory-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+  .theory-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--dark-green);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toggle-icon {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--light-green);
+    transition: transform 0.3s ease;
+  }
+  .toggle-icon.open {
+    transform: rotate(45deg);
+  }
+  .theory-description {
+    margin-top: 0.6rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #2e482e;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+  .theory-description.open {
+    max-height: 200px;
+    padding-top: 0.5rem;
+  }
+  #random-btn {
+    background-color: var(--light-green);
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.8rem;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+  }
+  #random-btn:hover {
+    background-color: #3a9c3a;
+  }
+  #random-theory-display {
+    background: var(--card-bg);
+    border-radius: 12px;
+    max-width: 900px;
+    padding: 1.2rem 1.5rem;
+    color: var(--dark-green);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    min-height: 60px;
+  }
+  #add-theory-section {
+    background: var(--card-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    max-width: 650px;
+    width: 100%;
+    margin-bottom: 3rem;
+    color: var(--dark-green);
+  }
+  #add-theory-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--dark-green);
+  }
+  #theory-title-input, #theory-desc-input {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1rem;
+    border: 2px solid var(--light-green);
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  #theory-desc-input {
+    min-height: 80px;
+  }
+  #add-theory-btn {
+    background-color: var(--dark-green);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  #add-theory-btn:hover {
+    background-color: #065006;
+  }
+  footer {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-top: auto;
+    padding: 1rem 0;
+    text-align: center;
+    user-select: none;
+  }
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    header p {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+    <header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Proyecto.html">The Legend of Zelda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item"><a class="nav-link" href="resumen.html">Resumen</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Historia</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="cronologia.html">Cronologia</a></li>
+                            <li><a class="dropdown-item" href="empresa.html">Empresa</a></li>
+                            <li><a class="dropdown-item" href="Videojuegos.html">Videojuegos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soundtracks</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="TLOFZ_soundtrack.html">The Legend of Zelda</a></li>
+                            <li><a class="dropdown-item" href="TLOFZOT_soundtrack.html">The Legend of Zelda Ocarina of Time</a></li>
+                            <li><a class="dropdown-item" href="TLOFZMM_soundtrack.html">The Legend of Zelda Majoras Mask</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTP_soundtrack.html">The Legend of Zelda Twillight Princess</a></li>
+                            <li><a class="dropdown-item" href="TLOFZBW_soundtrack.html">The Legend of Zelda Breath of the Wild</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTK_soundtrack.html">The Legend of Zelda Tears of the Kingdom</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personajes</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="personajes.html">Personajes de The Legend of Zelda</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Teorías por Fans</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="teorias.html">Teorías</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contenido.html">Redes sociales</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<header>
+  <h1><br>Teorías de Fans de <br />The Legend of Zelda</h1>
+  <p>Explora las teorías más fascinantes y misteriosas que los fans han creado alrededor de esta emblemática saga.</p>
+</header>
+
+<section id="theories-container" aria-label="Lista de teorías de fans">
+  <!-- Teorías se insertan dinámicamente aquí -->
+</section>
+
+<button id="random-btn" aria-live="polite" aria-describedby="random-theory-display">Mostrar teoría aleatoria</button>
+<section id="random-theory-display" aria-live="polite" aria-atomic="true" aria-relevant="additions"></section>
+
+<section id="add-theory-section" aria-label="Agregar nueva teoría">
+  <h2>Agrega tu propia teoría</h2>
+  <input id="theory-title-input" type="text" placeholder="Título de tu teoría" aria-label="Título de la teoría" />
+  <textarea id="theory-desc-input" placeholder="Descripción de tu teoría" aria-label="Descripción de la teoría"></textarea>
+  <button id="add-theory-btn">Agregar teoría</button>
+</section>
+
+<footer>
+  &copy; 2025 Zelda Fans - Página creada con ❤️ y pasión por la saga
+</footer>
+
+<script>
+  // Datos iniciales de teorías
+  const initialTheories = [
+    {
+      title: "Link es la reencarnación de un héroe anterior",
+      description: "Esta teoría plantea que cada Link en los diferentes juegos no es simplemente un nuevo personaje, sino la reencarnación espiritual del héroe que protegió Hyrule en el pasado. Esto explicaría los paralelismos y habilidades similares a lo largo de la saga."
+    },
+    {
+      title: "Ganon es más que un simple villano, es un dios caído",
+      description: "Según esta teoría, Ganon no es solo un antagonista común, sino una deidad antigua que perdió su poder y humanidad tras corromperse y que sigue buscando recuperar su dominio sobre el mundo."
+    },
+    {
+      title: "La serie es un ciclo eterno de luz y oscuridad",
+      description: "El mundo de Zelda se encuentra atrapado en un ciclo perpetuo donde la luz (representada por Zelda y Link) y la oscuridad (Ganon) se enfrentan eternamente. Cada juego es una repetición o variación de ese ciclo."
+    },
+    {
+      title: "Majora's Mask ocurre en una línea temporal paralela",
+      description: "Algunos fans creen que los eventos de Majora's Mask no ocurren en la misma línea temporal lineal de Ocarina of Time, sino en una realidad alternativa creada por el poder de la máscara y Skull Kid."
+    }
+  ];
+
+  const container = document.getElementById('theories-container');
+  const randomBtn = document.getElementById('random-btn');
+  const randomDisplay = document.getElementById('random-theory-display');
+  const addTitleInput = document.getElementById('theory-title-input');
+  const addDescInput = document.getElementById('theory-desc-input');
+  const addBtn = document.getElementById('add-theory-btn');
+
+  let theories = [...initialTheories];
+
+  function createTheoryCard(theory, index) {
+    const card = document.createElement('article');
+    card.className = 'theory-card';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-expanded', 'false');
+
+    const title = document.createElement('h3');
+    title.className = 'theory-title';
+    title.textContent = theory.title;
+    title.setAttribute('role', 'button');
+    title.setAttribute('aria-controls', `desc-${index}`);
+    title.setAttribute('tabindex', '0');
+    title.setAttribute('aria-expanded', 'false');
+
+    const toggleIcon = document.createElement('span');
+    toggleIcon.className = 'toggle-icon';
+    toggleIcon.textContent = '+';
+    title.appendChild(toggleIcon);
+
+    const description = document.createElement('p');
+    description.className = 'theory-description';
+    description.id = `desc-${index}`;
+    description.textContent = theory.description;
+    description.setAttribute('aria-hidden', 'true');
+
+    // Toggle function for expanding/collapsing
+    function toggleDescription() {
+      const isOpen = description.classList.contains('open');
+      if (isOpen) {
+        description.classList.remove('open');
+        title.setAttribute('aria-expanded', 'false');
+        card.setAttribute('aria-expanded', 'false');
+        description.setAttribute('aria-hidden', 'true');
+        toggleIcon.classList.remove('open');
+        toggleIcon.textContent = '+';
+      } else {
+        description.classList.add('open');
+        title.setAttribute('aria-expanded', 'true');
+        card.setAttribute('aria-expanded', 'true');
+        description.setAttribute('aria-hidden', 'false');
+        toggleIcon.classList.add('open');
+        toggleIcon.textContent = '×';
+      }
+    }
+
+    title.addEventListener('click', toggleDescription);
+    title.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleDescription();
+      }
+    });
+
+    card.appendChild(title);
+    card.appendChild(description);
+    return card;
+  }
+
+  function renderTheories() {
+    container.innerHTML = '';
+    theories.forEach((theory, idx) => {
+      const card = createTheoryCard(theory, idx);
+      container.appendChild(card);
+    });
+  }
+
+  function showRandomTheory() {
+    if (theories.length === 0) {
+      randomDisplay.textContent = "No hay teorías para mostrar.";
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * theories.length);
+    const t = theories[randomIndex];
+    randomDisplay.innerHTML = `<strong>${t.title}:</strong> ${t.description}`;
+  }
+
+  function addTheory() {
+    const title = addTitleInput.value.trim();
+    const desc = addDescInput.value.trim();
+    if (title.length < 3) {
+      alert('Por favor, ingresa un título válido (mínimo 3 caracteres).');
+      return;
+    }
+    if (desc.length < 10) {
+      alert('Por favor, ingresa una descripción válida (mínimo 10 caracteres).');
+      return;
+    }
+    const newTheory = { title, description: desc };
+    theories.push(newTheory);
+    renderTheories();
+    addTitleInput.value = '';
+    addDescInput.value = '';
+    alert('¡Teoría agregada con éxito!');
+  }
+
+  randomBtn.addEventListener('click', showRandomTheory);
+  addBtn.addEventListener('click', addTheory);
+
+  // Render al iniciar
+  renderTheories();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+</body>
+</html>
+

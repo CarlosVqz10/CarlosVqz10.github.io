@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="../Imagenes/faviconT.ico">
+<title>Personajes</title>
+<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  :root {
+    --primary-color: #1b3a4b;
+    --secondary-color: #f3c677;
+    --accent-color: #d1495b;
+    --background-color: rgba(240, 244, 248, 0.85);
+    --text-color: #fff;
+    --card-bg: rgba(0,0,0,0.6);
+    --shadow-color: rgba(0,0,0,0.5);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    /* Use the background image as requested */
+    background-image: url('../Imagenes/fondo12.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: var(--text-color);
+    min-height: 100vh;
+  }
+  /* Add a subtle overlay on body to improve text readability */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.45);
+    z-index: -1;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-color);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+  header p {
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  main {
+    max-width: 1000px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 1rem;
+    background-color: var(--background-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow-color);
+  }
+  #search-container {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  #search-container input {
+    width: 280px;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 24px;
+    border: 2px solid var(--primary-color);
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  #search-container input:focus {
+    border-color: var(--accent-color);
+  }
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1.8rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+  }
+  .card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .card-content {
+    padding: 1rem 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-content h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 3px #000;
+  }
+  .card-content p {
+    margin: 0;
+    flex-grow: 1;
+    line-height: 1.4;
+  }
+  .card-content .more-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    display: none;
+    line-height: 1.5;
+  }
+  .card.expanded .more-info {
+    display: block;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    color: #ddd;
+    font-size: 0.9rem;
+    border-top: 1px solid #555;
+  }
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    #search-container input {
+      width: 90%;
+    }
+  }
+</style>
+</head>
+<body>
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Proyecto.html">The Legend of Zelda</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="resumen.html">Resumen</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Historia</a>
+            <ul class="dropdown-menu" style="border-top: 5px solid white;">
+              <li><a class="dropdown-item" href="cronologia.html">Cronologia</a></li>
+              <li><a class="dropdown-item" href="empresa.html">Empresa</a></li>
+              <li><a class="dropdown-item" href="Videojuegos.html">Videojuegos</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soundtracks</a>
+            <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                <li><a class="dropdown-item" href="TLOFZ_soundtrack.html">The Legend of Zelda</a></li>
+                <li><a class="dropdown-item" href="TLOFZOT_soundtrack.html">The Legend of Zelda Ocarina of Time</a></li>
+                <li><a class="dropdown-item" href="TLOFZMM_soundtrack.html">The Legend of Zelda Majoras Mask</a></li>
+                <li><a class="dropdown-item" href="TLOFZTP_soundtrack.html">The Legend of Zelda Twillight Princess</a></li>
+                <li><a class="dropdown-item" href="TLOFZBW_soundtrack.html">The Legend of Zelda Breath of the Wild</a></li>
+                <li><a class="dropdown-item" href="TLOFZTK_soundtrack.html">The Legend of Zelda Tears of the Kingdom</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personajes</a>
+            <ul class="dropdown-menu" style="border-top: 5px solid white;">
+              <li><a class="dropdown-item" href="personajes.html">Personajes de The Legend of Zelda</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Teorías por Fans</a>
+              <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                  <li><a class="dropdown-item" href="teorias.html">Teorías</a></li>
+              </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contenido.html">Redes sociales</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<header>
+  <h1>Personajes de The Legend of Zelda</h1>
+  <p>Descubre los personajes icónicos del legendario videojuego, sus historias y secretos.</p>
+</header>
+
+<main>
+  <section id="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar personaje..." aria-label="Buscar personaje" />
+  </section>
+
+  <section class="cards-container" id="charactersContainer">
+
+    <article class="card" tabindex="0" data-name="Link">
+      <img src="../Imagenes/1.jpeg" alt="Link" />
+      <div class="card-content">
+        <h3>Link</h3>
+        <p>El héroe protagonista que siempre salva Hyrule y la Princesa Zelda.</p>
+        <p class="more-info">Link es un joven valiente que empuña la Espada Maestra y se embarca en aventuras épicas para derrotar al mal.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Zelda">
+      <img src="../Imagenes/zelda10.webp" alt="Princesa Zelda" />
+      <div class="card-content">
+        <h3>Princesa Zelda</h3>
+        <p>La sabia princesa con poderes mágicos que protege el reino de Hyrule.</p>
+        <p class="more-info">Zelda posee la Trifuerza de la Sabiduría y lucha para mantener el equilibrio y la paz en el mundo.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Ganondorf">
+      <img src="../Imagenes/3.jpeg" alt="Ganondorf" />
+      <div class="card-content">
+        <h3>Ganondorf</h3>
+        <p>El principal antagonista, un poderoso hechicero y líder de los Gerudo.</p>
+        <p class="more-info">Ganondorf busca obtener la Trifuerza para dominar Hyrule y está siempre en conflicto con Link y Zelda.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Impa">
+      <img src="../Imagenes/impa.webp" alt="Impa" />
+      <div class="card-content">
+        <h3>Impa</h3>
+        <p>Guardiana leal y protectora de la línea real de Hyrule.</p>
+        <p class="more-info">Impa es una sabia guerrera Sheikah que guía y protege a Zelda y Link en sus misiones.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Midna">
+      <img src="../Imagenes/midna.jpg" alt="Midna" />
+      <div class="card-content">
+        <h3>Midna</h3>
+        <p>La princesa del Crepúsculo que ayuda a Link en Twilight Princess.</p>
+        <p class="more-info">A pesar de su actitud juguetona, Midna es fundamental para derrotar la oscuridad que amenaza Hyrule.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Navi">
+      <img src="../Imagenes/Navi.jpeg" alt="Navi" />
+      <div class="card-content">
+        <h3>Navi</h3>
+        <p>El pequeño hada compañera de Link en Ocarina of Time.</p>
+        <p class="more-info">Navi ayuda a Link con consejos, señalando enemigos y objetos útiles durante su aventura.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Epona">
+      <img src="../Imagenes/Epona.jpeg" alt="Epona" />
+      <div class="card-content">
+        <h3>Epona</h3>
+        <p>La fiel y rápida yegua de Link.</p>
+        <p class="more-info">Epona acompaña a Link en muchas de sus aventuras, facilitando el viaje por Hyrule.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Sheik">
+      <img src="../Imagenes/sheik.jpg" alt="Sheik" />
+      <div class="card-content">
+        <h3>Sheik</h3>
+        <p>Alter ego misterioso de la Princesa Zelda.</p>
+        <p class="more-info">Sheik es ágil y hábil en combate, sirviendo como guía y protector en Ocarina of Time.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Darunia">
+      <img src="../Imagenes/Darunia.webp" alt="Darunia" />
+      <div class="card-content">
+        <h3>Darunia</h3>
+        <p>Líder de los Goron y amigo leal de Link.</p>
+        <p class="more-info">Con una fuerza imponente, Darunia protege a su pueblo y colabora con Link para salvar Hyrule.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Fi">
+      <img src="../Imagenes/Fi.webp" alt="Fi" />
+      <div class="card-content">
+        <h3>Fi</h3>
+        <p>Espíritu del Espadón, guía a Link en Skyward Sword.</p>
+        <p class="more-info">Fi proporciona información y asistencia mágica para completar la misión del héroe.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Skull Kid">
+      <img src="../Imagenes/Skull Kid.webp" alt="Skull Kid" />
+      <div class="card-content">
+        <h3>Skull Kid</h3>
+        <p>Un travieso y misterioso personaje con una máscara peligrosa.</p>
+        <p class="more-info">Portador de la Máscara de Majora, representa una amenaza grande, pero también tiene su propia historia trágica.</p>
+      </div>
+    </article>
+
+    <article class="card" tabindex="0" data-name="Malon">
+      <img src="../Imagenes/Malon.jpg" alt="Malon" />
+      <div class="card-content">
+        <h3>Malon</h3>
+        <p>Joven amable que cuida de los caballos en Lon Lon Ranch.</p>
+        <p class="more-info">Malon tiene un rol importante en Ocarina of Time y es querida por Link y la comunidad.</p>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<footer>
+  &copy; 2024 The Legend of Zelda Fanpage - Página creada por IA
+</footer>
+
+<script>
+  // Toggle expanded card info on click or keyboard Enter/Space
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('expanded');
+      }
+    });
+  });
+
+  // Search/filter characters by name
+  const searchInput = document.getElementById('searchInput');
+  const charactersContainer = document.getElementById('charactersContainer');
+
+  searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name').toLowerCase();
+      if (name.includes(filter)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
+

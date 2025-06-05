@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="../Imagenes/faviconT.ico">
+    <title>Resumen</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary-color: #006f44;
+            --secondary-color: #93c572;
+            --text-color-light: #f9f9f9;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text-color-light);
+            font-family: var(--font-family);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            min-height: 100vh;
+            background-color: #0b2618;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+
+        main {
+            max-width: 700px;
+            background: rgba(0, 0, 0, 0.55);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            backdrop-filter: saturate(150%) blur(10px);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: default;
+        }
+
+        main:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+            transform: translateY(-6px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            letter-spacing: 1.25px;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        h1:hover {
+            color: var(--secondary-color);
+        }
+
+        h1:hover::after {
+            width: 100%;
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            transition: color 0.3s ease, transform 0.25s ease;
+            cursor: default;
+        }
+
+        p:hover {
+            color: var(--secondary-color);
+            transform: translateX(6px);
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #cce7d0;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        footer:hover {
+            color: var(--secondary-color);
+        }
+
+        @keyframes pulseAnim {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 8px var(--secondary-color);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 16px var(--secondary-color);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 8px var(--secondary-color);
+            }
+        }
+
+        .pulse {
+            animation: pulseAnim 1s ease forwards;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            main {
+                padding: 1.5rem 1.75rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body background="../Imagenes/fondo12.jpg">
+<header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Proyecto.html">The Legend of Zelda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item"><a class="nav-link" href="resumen.html">Resumen</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Historia</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="cronologia.html">Cronologia</a></li>
+                            <li><a class="dropdown-item" href="empresa.html">Empresa</a></li>
+                            <li><a class="dropdown-item" href="Videojuegos.html">Videojuegos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soundtracks</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="TLOFZ_soundtrack.html">The Legend of Zelda</a></li>
+                            <li><a class="dropdown-item" href="TLOFZOT_soundtrack.html">The Legend of Zelda Ocarina of Time</a></li>
+                            <li><a class="dropdown-item" href="TLOFZMM_soundtrack.html">The Legend of Zelda Majoras Mask</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTP_soundtrack.html">The Legend of Zelda Twillight Princess</a></li>
+                            <li><a class="dropdown-item" href="TLOFZBW_soundtrack.html">The Legend of Zelda Breath of the Wild</a></li>
+                            <li><a class="dropdown-item" href="TLOFZTK_soundtrack.html">The Legend of Zelda Tears of the Kingdom</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Personajes</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="personajes.html">Personajes de The Legend of Zelda</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Teorías por Fans</a>
+                        <ul class="dropdown-menu" style="border-top: 5px solid white;">
+                            <li><a class="dropdown-item" href="teorias.html">Teorías</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contenido.html">Redes sociales</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h1>The Legend of Zelda - Resumen de los Videojuegos</h1>
+    <p>
+        <strong>The Legend of Zelda</strong> es una icónica franquicia de videojuegos creada por Nintendo en 1986. Desde sus inicios, ha marcado un antes y un después en la historia de los videojuegos, combinando aventura, exploración, acertijos y acción en un mismo universo de fantasía.
+    </p>
+    <p>
+        La serie gira en torno a las aventuras de Link, un joven héroe que busca rescatar a la Princesa Zelda y proteger el reino de Hyrule de diversas amenazas, principalmente del malvado Ganon o Ganondorf. A lo largo de sus múltiples entregas, los juegos han evolucionado con innovación en la jugabilidad y narrativa, desde el clásico <em>The Legend of Zelda</em> en 2D hasta títulos tridimensionales revolucionarios como <em>Ocarina of Time</em> y <em>Breath of the Wild</em>.
+    </p>
+    <p>
+        Cada juego de la saga introduce nuevas mecánicas, armas, y un mundo vivo por explorar, con acertijos desafiantes y combates intensos. Más allá de la historia principal, la franquicia ha inspirado una cultura profunda de fans, música memorable, y una influencia notable en el diseño de juegos de aventura.
+    </p>
+    <p>
+        En resumen, <strong>The Legend of Zelda</strong> es más que una serie de videojuegos; es una experiencia atemporal que sigue cautivando a generaciones de jugadores con su encanto, misterio y espíritu aventurero.
+    </p>
+    <footer>
+        &copy; Serie The Legend of Zelda - Nintendo
+    </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+<script>
+    // JavaScript para mejoras interactivas en la página resumen de The Legend of Zelda
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainContent = document.querySelector('main');
+        const heading = document.querySelector('h1');
+        const footer = document.querySelector('footer');
+
+        // Desvanecer el contenido principal al cargar la página (fade-in)
+        mainContent.style.opacity = 0;
+        mainContent.style.transition = 'opacity 1.2s ease';
+        requestAnimationFrame(() => {
+            mainContent.style.opacity = 1;
+        });
+
+        // Animación de pulso en el título al hacer clic
+        heading.addEventListener('click', () => {
+            heading.classList.add('pulse');
+            setTimeout(() => heading.classList.remove('pulse'), 1000);
+        });
+
+        // Mostrar mensaje transitorio al hacer clic en el footer
+        footer.addEventListener('click', () => {
+            if (document.getElementById('transient-msg')) return; // Evitar mensajes duplicados
+
+            const msg = document.createElement('div');
+            msg.id = 'transient-msg';
+            msg.textContent = '¡Gracias por visitar nuestro resumen de Zelda!';
+            msg.style.position = 'fixed';
+            msg.style.bottom = '20px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.background = 'var(--secondary-color)';
+            msg.style.color = 'black';
+            msg.style.padding = '0.8rem 1.5rem';
+            msg.style.borderRadius = '20px';
+            msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+            msg.style.fontWeight = 'bold';
+            msg.style.zIndex = 1000;
+            msg.style.opacity = '0';
+            msg.style.transition = 'opacity 0.4s ease';
+
+            document.body.appendChild(msg);
+
+            requestAnimationFrame(() => {
+                msg.style.opacity = '1';
+            });
+
+            setTimeout(() => {
+                msg.style.opacity = '0';
+                msg.addEventListener('transitionend', () => {
+                    msg.remove();
+                });
+            }, 2500);
+        });
+    });
+</script>
+</body>
+</html>
